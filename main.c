@@ -2,10 +2,8 @@
 #include <stdlib.h>
 
 int main(){
-
-}
-
-int file_io(char *filename,char *base_sheet){
+  char base_sheet[300][300];
+  char *filename = "input_data.txt";
   FILE *fp;
   char ch;
 
@@ -13,9 +11,15 @@ int file_io(char *filename,char *base_sheet){
     fprintf(stderr, "%sのオープンに失敗しました.\n", filename);
     exit(EXIT_FAILURE);
   }
-  
+ 
+  int base_x = 0;
+  int base_y = 0;
   while (( ch = fgetc(fp)) != EOF ) {
     putchar(ch);
+    if(ch != "\n"){
+      base_sheet[base_x][base_y] = ch;
+      base_x++;
+    }
   }
   
   fclose(fp);
